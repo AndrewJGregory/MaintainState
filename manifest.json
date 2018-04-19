@@ -1,0 +1,13 @@
+{
+  "name": "Maintain State",
+  "version": "0.0.0.1",
+  "description": "Persist information in input areas after a page refresh.",
+  "content_scripts": [
+    {
+      "run_at": "document_start",
+      "matches": ["https://appacademy.github.io/*"],
+      "js": ["background.js"]
+    }
+  ],
+  "manifest_version": 2
+}
