@@ -1,6 +1,6 @@
 {
   "name": "Maintain State",
-  "version": "0.0.0.1",
+  "version": "0.0.0.2",
   "description": "Persist information in input areas after a page refresh.",
   "content_scripts": [
     {
