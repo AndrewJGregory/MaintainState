@@ -4,6 +4,7 @@ window.onbeforeunload = writeToLocalStorage;
 function writeToPage() {
   writeInputsToPage();
   writeRadioBtnsToPage();
+  addClearBtn();
 }
 
 function writeToLocalStorage() {
@@ -58,4 +59,13 @@ function getRadioBtnGroups() {
   return Array.from(document.getElementsByClassName("field-radio-group")).map(
     group => group.getElementsByTagName("input"),
   );
+}
+
+function addClearBtn() {
+  const button = document.createElement("button");
+  button.innerHTML = "CLEAR";
+  const style =
+    "color: white; background-color: red; border-radius: 10px; position: sticky; top: 0; letter-spacing: 2px; width: 200px; height: 100px; font-size: 55px; display: flex; justify-content: center; border: 0;";
+  button.setAttribute("style", style);
+  document.querySelector("html").prepend(button);
 }
