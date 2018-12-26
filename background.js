@@ -13,16 +13,11 @@ function writeToLocalStorage() {
 }
 
 function writeRadioBtnsToPage() {
-  const radioBtnRegex = new RegExp("radio[0-9]{1,2}");
-  const radioBtnGroups = getRadioBtnGroups();
-
-  for (let key in localStorage) {
-    if (radioBtnRegex.test(key)) {
-      const radioBtnGroupIdx = parseInt(key.slice(5));
-      const radioBtnIdx = parseInt(localStorage[key]);
-      radioBtnGroups[radioBtnGroupIdx][radioBtnIdx].checked = true;
-    }
-  }
+  const allRadioBtns = getAllRadioBtns();
+  allRadioBtns.forEach((radioBtn, i) => {
+    const bool = localStorage.getItem(`radio${i}`) === "true";
+    radioBtn.checked = bool;
+  });
 }
 
 function writeInputsToLocalStorage() {
@@ -45,20 +40,14 @@ function writeInputsToPage() {
 }
 
 function writeRadioBtnsToLocalStorage() {
-  const radioBtnGroups = getRadioBtnGroups();
-  radioBtnGroups.forEach((radioBtnGroup, groupIdx) =>
-    [...radioBtnGroup].forEach((radioBtn, checkedRadioBtnIdx) => {
-      if (radioBtn.checked) {
-        localStorage.setItem(`radio${groupIdx}`, checkedRadioBtnIdx);
-      }
-    }),
+  const allRadioBtns = getAllRadioBtns();
+  allRadioBtns.forEach((radioBtn, i) =>
+    localStorage.setItem(`radio${i}`, radioBtn.checked),
   );
 }
 
-function getRadioBtnGroups() {
-  return Array.from(document.getElementsByClassName("field-radio-group")).map(
-    group => group.getElementsByTagName("input"),
-  );
+function getAllRadioBtns() {
+  return [...document.querySelectorAll("input[type=radio]")];
 }
 
 function addClearBtn() {
