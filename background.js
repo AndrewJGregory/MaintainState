@@ -45,18 +45,13 @@ function writeInputsToPage() {
 
 function writeRadioBtnsToLocalStorage() {
   const radioBtnGroups = getRadioBtnGroups();
-
-  for (let i = 0; i < radioBtnGroups.length; i++) {
-    const radioBtnGroup = radioBtnGroups[i];
-    let checkedRadioBtnIdx = null;
-    for (let j = 0; j < radioBtnGroup.length; j++) {
-      const radioBtn = radioBtnGroup[j];
+  radioBtnGroups.forEach((radioBtnGroup, groupIdx) =>
+    [...radioBtnGroup].forEach((radioBtn, checkedRadioBtnIdx) => {
       if (radioBtn.checked) {
-        checkedRadioBtnIdx = j;
-        localStorage.setItem(`radio${i}`, checkedRadioBtnIdx);
+        localStorage.setItem(`radio${groupIdx}`, checkedRadioBtnIdx);
       }
-    }
-  }
+    }),
+  );
 }
 
 function getRadioBtnGroups() {
