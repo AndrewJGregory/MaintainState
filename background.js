@@ -61,6 +61,6 @@ function writeRadioBtnsToLocalStorage() {
 
 function getRadioBtnGroups() {
   return Array.from(document.getElementsByClassName("field-radio-group")).map(
-    group => group.getElementsByTagName("input")
+    group => group.getElementsByTagName("input"),
   );
 }
