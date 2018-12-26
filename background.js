@@ -51,9 +51,11 @@ function writeRadioBtnsToLocalStorage() {
     let checkedRadioBtnIdx = null;
     for (let j = 0; j < radioBtnGroup.length; j++) {
       const radioBtn = radioBtnGroup[j];
-      if (radioBtn.checked) checkedRadioBtnIdx = j;
+      if (radioBtn.checked) {
+        checkedRadioBtnIdx = j;
+        localStorage.setItem(`radio${i}`, checkedRadioBtnIdx);
+      }
     }
-    localStorage.setItem(`radio${i}`, checkedRadioBtnIdx);
   }
 }
 
