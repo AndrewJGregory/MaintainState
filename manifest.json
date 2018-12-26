@@ -5,7 +5,7 @@
   "content_scripts": [
     {
       "run_at": "document_start",
-      "matches": ["https://appacademy.github.io/*"],
+      "matches": ["https://appacademy.github.io/*", "file:///*"],
       "js": ["background.js"]
     }
   ],
