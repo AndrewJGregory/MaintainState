@@ -70,15 +70,9 @@ function addClearBtn() {
 }
 
 function resetInputFields() {
-  const inputFields = document.getElementsByClassName("form-control");
-  [...inputFields].forEach(field => (field.value = ""));
+  getAllInputFields().forEach(field => (field.value = ""));
 }
 
 function resetRadioBtns() {
-  const radioBtnGroups = getRadioBtnGroups();
-  radioBtnGroups.forEach(group => {
-    [...group].forEach(radioBtn => {
-      radioBtn.checked = false;
-    });
-  });
+  getAllRadioBtns().forEach(radioBtn => (radioBtn.checked = false));
 }
