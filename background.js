@@ -21,7 +21,7 @@ function writeRadioBtnsToPage() {
 }
 
 function writeInputsToLocalStorage() {
-  const inputFields = document.getElementsByClassName("form-control");
+  const inputFields = getAllInputFields();
   for (let i = 0; i < inputFields.length; i++) {
     const field = inputFields[i];
     if (field.value) {
@@ -48,6 +48,10 @@ function writeRadioBtnsToLocalStorage() {
 
 function getAllRadioBtns() {
   return [...document.querySelectorAll("input[type=radio]")];
+}
+
+function getAllInputFields() {
+  return [...document.getElementsByClassName("form-control")];
 }
 
 function addClearBtn() {
