@@ -68,4 +68,24 @@ function addClearBtn() {
     "color: white; background-color: red; border-radius: 10px; position: sticky; top: 0; letter-spacing: 2px; width: 200px; height: 100px; font-size: 55px; display: flex; justify-content: center; border: 0;";
   button.setAttribute("style", style);
   document.querySelector("html").prepend(button);
+
+  button.addEventListener("click", () => {
+    localStorage.clear();
+    resetInputFields();
+    resetRadioBtns();
+  });
+}
+
+function resetInputFields() {
+  const inputFields = document.getElementsByClassName("form-control");
+  [...inputFields].forEach(field => (field.value = ""));
+}
+
+function resetRadioBtns() {
+  const radioBtnGroups = getRadioBtnGroups();
+  radioBtnGroups.forEach(group => {
+    [...group].forEach(radioBtn => {
+      radioBtn.checked = false;
+    });
+  });
 }
