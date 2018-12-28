@@ -22,12 +22,7 @@ function writeRadioBtnsToPage() {
 
 function writeInputsToLocalStorage() {
   const inputFields = getAllInputFields();
-  for (let i = 0; i < inputFields.length; i++) {
-    const field = inputFields[i];
-    if (field.value) {
-      localStorage.setItem(field.id, field.value);
-    }
-  }
+  inputFields.forEach(field => localStorage.setItem(field.id, field.value));
 }
 
 function writeInputsToPage() {
