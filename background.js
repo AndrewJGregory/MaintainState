@@ -26,7 +26,7 @@ function writeInputsToLocalStorage() {
 }
 
 function writeInputsToPage() {
-  for (let key in localStorage) {
+  for (const key in localStorage) {
     const el = document.getElementById(key);
     if (el) {
       el.value = localStorage.getItem(key);
