@@ -1,4 +1,4 @@
-# [Maintain State](https://chrome.google.com/webstore/detail/ocinlpmickhokdjfbdelndpfgekfglen/)
+# Maintain State
 
 ## Motivation
 
@@ -41,7 +41,7 @@ Writing the inputs to the page follows the same conditional logic of whether or 
 
 There is a large, red clear button in the upper left of the page to aid in clearing `localStorage` and resetting every input. This is useful because when starting a new inteview, the previous interviews values would be loaded into every input field which is annoying because all of the fields would have to be manually cleared.
 
-#### Clever Code Snippets
+### Clever Code Snippets
 
 ##### Snippet #1
 
