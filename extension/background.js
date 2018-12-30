@@ -22,16 +22,16 @@ function writeRadioBtnsToPage() {
 
 function writeInputsToLocalStorage() {
   const inputFields = getAllInputFields();
-  inputFields.forEach(field => localStorage.setItem(field.id, field.value));
+  inputFields.forEach((field, i) =>
+    localStorage.setItem(`field${i}`, field.value),
+  );
 }
 
 function writeInputsToPage() {
-  for (const key in localStorage) {
-    const el = document.getElementById(key);
-    if (el) {
-      el.value = localStorage.getItem(key);
-    }
-  }
+  const inputFields = getAllInputFields();
+  inputFields.forEach(
+    (field, i) => (field.value = localStorage.getItem(`field${i}`)),
+  );
 }
 
 function writeRadioBtnsToLocalStorage() {
