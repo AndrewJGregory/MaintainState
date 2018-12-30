@@ -42,11 +42,13 @@ function writeRadioBtnsToLocalStorage() {
 }
 
 function getAllRadioBtns() {
-  return [...document.querySelectorAll("input[type=radio]")];
+  return document.querySelectorAll("input[type=radio]");
 }
 
 function getAllInputFields() {
-  return [...document.getElementsByClassName("form-control")];
+  const textAreas = [...document.querySelectorAll("textarea")];
+  const inputs = [...document.querySelectorAll("input[type=text]")];
+  return textAreas.concat(inputs);
 }
 
 function addClearBtn() {
