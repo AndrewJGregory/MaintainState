@@ -4,6 +4,9 @@
 
 While conducting behavioral interviews for App Academy and taking notes in a web page, I accidently refreshed the page. The notes that I took didn't persist and the entire page was cleared. This frustrated me because I had to go back after the interview and fill in all of the notes again. To remedy this, I wrote this chrome extension to persist the notes that I take if the page refreshes or the tab closes.
 
+[Chrome extension link](https://chrome.google.com/webstore/detail/ocinlpmickhokdjfbdelndpfgekfglen/)
+[LIVE LINK](http://andrewjgregoryajg.com/MaintainState/)
+
 ## How does it work?
 
 There are two parts to how the extension works. First, when the page refreshes or closes the inputs' values are saved to local storage. Second, when the page initially loads local storage is examined and the saved inputs' values are written to their corresponding places.
