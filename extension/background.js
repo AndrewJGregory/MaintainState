@@ -27,12 +27,9 @@ function writeInputsToPage() {
 }
 
 function getAllInputs() {
-  const inputTypes = ["textarea", "input[type=text]", "input[type=radio]"];
-  return inputTypes.reduce(
-    (allInputs, selector) =>
-      (allInputs = allInputs.concat([...document.querySelectorAll(selector)])),
-    [],
-  );
+  const textAreas = [...document.querySelectorAll("textarea")];
+  const inputs = [...document.querySelectorAll("input")];
+  return textAreas.concat(inputs);
 }
 
 function addClearBtn() {
