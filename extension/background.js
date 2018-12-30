@@ -1,54 +1,38 @@
 window.requestAnimationFrame(writeToPage);
-window.onbeforeunload = writeToLocalStorage;
+window.onbeforeunload = writeInputsToLocalStorage;
 
 function writeToPage() {
   writeInputsToPage();
-  writeRadioBtnsToPage();
   addClearBtn();
 }
 
-function writeToLocalStorage() {
-  writeRadioBtnsToLocalStorage();
-  writeInputsToLocalStorage();
-}
-
-function writeRadioBtnsToPage() {
-  const allRadioBtns = getAllRadioBtns();
-  allRadioBtns.forEach((radioBtn, i) => {
-    const bool = localStorage.getItem(`radio${i}`) === "true";
-    radioBtn.checked = bool;
+function writeInputsToLocalStorage() {
+  const inputFields = getAllInputs();
+  inputFields.forEach((field, i) => {
+    const value = field.type === "radio" ? field.checked : field.value;
+    localStorage.setItem(`field${i}`, value);
   });
 }
 
-function writeInputsToLocalStorage() {
-  const inputFields = getAllInputFields();
-  inputFields.forEach((field, i) =>
-    localStorage.setItem(`field${i}`, field.value),
-  );
-}
-
 function writeInputsToPage() {
-  const inputFields = getAllInputFields();
-  inputFields.forEach(
-    (field, i) => (field.value = localStorage.getItem(`field${i}`)),
+  const inputFields = getAllInputs();
+  inputFields.forEach((field, i) => {
+    if (field.type === "radio") {
+      const bool = localStorage.getItem(`field${i}`) === "true";
+      field.checked = bool;
+    } else {
+      field.value = localStorage.getItem(`field${i}`);
+    }
+  });
+}
+
+function getAllInputs() {
+  const inputTypes = ["textarea", "input[type=text]", "input[type=radio]"];
+  return inputTypes.reduce(
+    (allInputs, selector) =>
+      (allInputs = allInputs.concat([...document.querySelectorAll(selector)])),
+    [],
   );
-}
-
-function writeRadioBtnsToLocalStorage() {
-  const allRadioBtns = getAllRadioBtns();
-  allRadioBtns.forEach((radioBtn, i) =>
-    localStorage.setItem(`radio${i}`, radioBtn.checked),
-  );
-}
-
-function getAllRadioBtns() {
-  return document.querySelectorAll("input[type=radio]");
-}
-
-function getAllInputFields() {
-  const textAreas = [...document.querySelectorAll("textarea")];
-  const inputs = [...document.querySelectorAll("input[type=text]")];
-  return textAreas.concat(inputs);
 }
 
 function addClearBtn() {
@@ -62,14 +46,12 @@ function addClearBtn() {
   button.addEventListener("click", () => {
     localStorage.clear();
     resetInputFields();
-    resetRadioBtns();
   });
 }
 
 function resetInputFields() {
-  getAllInputFields().forEach(field => (field.value = ""));
-}
-
-function resetRadioBtns() {
-  getAllRadioBtns().forEach(radioBtn => (radioBtn.checked = false));
+  getAllInputs().forEach(field => {
+    const type = field.type === "radio" ? "checked" : "value";
+    field[type] = "";
+  });
 }
