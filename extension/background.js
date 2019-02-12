@@ -1,4 +1,5 @@
 (() => {
+  const inputFields = getAllInputs();
   window.requestAnimationFrame(writeToPage);
   window.onbeforeunload = writeInputsToLocalStorage;
 
@@ -8,7 +9,6 @@
   }
 
   function writeInputsToLocalStorage() {
-    const inputFields = getAllInputs();
     inputFields.forEach((field, i) => {
       const value = field.type === "radio" ? field.checked : field.value;
       localStorage.setItem(`field${i}`, value);
@@ -16,7 +16,6 @@
   }
 
   function writeInputsToPage() {
-    const inputFields = getAllInputs();
     inputFields.forEach((field, i) => {
       if (field.type === "radio") {
         const bool = localStorage.getItem(`field${i}`) === "true";
@@ -48,7 +47,7 @@
   }
 
   function resetInputFields() {
-    getAllInputs().forEach(field => {
+    inputFields.forEach(field => {
       const type = field.type === "radio" ? "checked" : "value";
       field[type] = "";
     });
